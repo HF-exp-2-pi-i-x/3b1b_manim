@@ -61,6 +61,7 @@ class D3(Scene):
             tex_template=TexFontTemplates.latin_modern_tw,
         )
         r4.next_to(t4, UL, buff=0.1)
+        # make direction array
         left = t4[0].get_vertices()[1]
         right_mid = midpoint(t4[0].get_vertices()[0], t4[0].get_vertices()[2])
         left_to_up_right = right_mid - left
@@ -73,11 +74,10 @@ class D3(Scene):
             tex_template=TexFontTemplates.latin_modern_tw,
         )
         r5.next_to(t5, UL, buff=0.1)
+        # make direction array
         right = t5[0].get_vertices()[2]
         left_mid = midpoint(t5[0].get_vertices()[0], t5[0].get_vertices()[1])
         right_to_up_left = left_mid - right
-        # [ 3.7888528 , -1.37368421 , 0.        ]
-        print(t5.get_center_of_mass())
         # create all triangles
         self.play(
             Create(t0),
@@ -93,7 +93,7 @@ class D3(Scene):
             Create(t5),
             Create(r5),
         )
-        # play animation
+        # play animation (change about point to fix the shift after rotation)
         self.play(
             Rotate(
                 t1,
@@ -103,7 +103,6 @@ class D3(Scene):
         )
         self.play(Rotate(t2, angle=4 / 3 * PI, about_point=[3.5, 1.5, 0.0]))
         self.play(Rotate(t3, angle=PI, axis=UP))
-        # [ 0.2888528,  -1.37368421 , 0      ]
         self.play(
             Rotate(
                 t4,
