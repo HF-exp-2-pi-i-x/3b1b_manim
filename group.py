@@ -119,3 +119,18 @@ class D3(Scene):
                 about_point=[3.7888528, -1.60368421, 0.0],
             )
         )
+
+
+class ClosureExample(Scene):
+    def construct(self):
+        t = createTriangle()
+        label = MathTex(
+            r"r_1 \circ \rho = r_2",
+            color=BLACK,
+            font_size=36,
+            tex_template=TexFontTemplates.latin_modern_tw,
+        )
+        label.next_to(t, UL, buff=0.1)
+        self.add(t, label)
+        self.play(Rotate(t, angle=2 / 3 * PI, about_point=[0, -0.1, 0]))
+        self.play(Rotate(t, angle=PI, axis=UP))
